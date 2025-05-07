@@ -7,6 +7,9 @@
             if (arr.Length == 0)
                 throw new ArgumentException("Array must not be empty.");
 
+            if (arr.Length == 1)
+                throw new ArgumentException("Array must contain minimum two elements.");
+
             int p1 = arr[0];
             int? p2 = null;
 
@@ -21,7 +24,14 @@
                 else if (p2 == null || a < p2) p2 = a;
             }
 
-            return p2 == null ? p1 : p1 + p2.Value;
+            try
+            {
+                return checked(p1 + p2.Value);
+            }
+            catch (OverflowException)
+            {
+                throw new OverflowException("Sum of two minimum values exceeds the range of int.");
+            }
         }
     }
 }

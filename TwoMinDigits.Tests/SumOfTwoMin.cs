@@ -42,5 +42,17 @@
         {
             Assert.Throws<ArgumentException>(() => TwoMinCalculator.SumOfTwoMin(new int[] { }));
         }
+
+        [Fact]
+        public void TwoMin_WithOneElement_ThrowsException()
+        {
+            Assert.Throws<ArgumentException>(() => TwoMinCalculator.SumOfTwoMin(new int[] { 1 }));
+        }
+
+        [Fact]
+        public void TwoMin_WithOverflow_ThrowsException()
+        {
+            Assert.Throws<OverflowException>(() => TwoMinCalculator.SumOfTwoMin(new int[] { 1, int.MaxValue }));
+        }
     }
 }
